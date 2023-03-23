@@ -1,9 +1,32 @@
 FROM kalilinux/kali-rolling
 
+RUN echo 00000000000000000000000000
+WORKDIR /
+COPY ["./kali-archive-keyring_2022.1_all.deb", "/"]
+RUN apt install -y /kali-archive-keyring_2022.1_all.deb
+#RUN apt-get update
+
+RUN echo 11111111111111111
+#RUN apt-get install -y wget
+#RUN wget archive.kali.org/archive-key.asc
+#RUN apt-key add archive-key.asc
+
+RUN echo 22222222222222222222222222222
+
+#RUN wget http://http.kali.org/kali/pool/main/k/kali-archive-keyring/kali-archive-keyring_2022.1_all.deb && sudo dpkg -i ./kali-archive-keyring_2022.1_all.deb
+
+RUN echo 333333333333333333333333333333
 RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get dist-upgrade -y
 
+RUN echo 4444444444444444444444
+
+RUN apt-get install -y gnutls-bin
+RUN apt install -y git-all
+RUN git --version
+RUN git config --global http.sslVerify false
+RUN git config --global http.postBuffer 1048576000
 
 # ----------------------------------------------------------------------------------------
 # 全工具安装需 20G 硬盘
@@ -11,7 +34,7 @@ RUN apt-get update && \
 
 # 常用工具安装
 RUN apt-get install -y \
-    vim procps net-tools telnet netcat tcpdump ftp dos2unix \
+    vim procps net-tools telnet netcat-traditional tcpdump ftp dos2unix \
     # 渗透框架
     metasploit-framework \
     # 漏洞利用数据库
@@ -21,18 +44,22 @@ RUN apt-get install -y \
     # 安全列表（常用账密清单等）
     seclists \
     # 网络嗅探
-    nmap \ 
+    nmap \
     # WIFI 扫描
     aircrack-ng \
     # 合规扫描
-    lynis \ 
+    lynis \
     # WordPress 扫描
-    wpscan \ 
+    wpscan \
     # Web 应用扫描
     skipfish
 
+RUN apt install -y apt-transport-https
+RUN apt install -y iputils-ping
 # Linux 本地提权检查工具
-RUN git clone -b master --single-branch https://github.com/rebootuser/LinEnum /usr/share/LinEnum
+#RUN git clone -b master --single-branch https://github.com/rebootuser/LinEnum /usr/share/LinEnum
+#RUN git clone -b master --single-branch git://github.com/rebootuser/LinEnum /usr/share/LinEnum
+COPY ["./LinEnum", "/usr/share/"]
 # ----------------------------------------------------------------------------------------
 
 
