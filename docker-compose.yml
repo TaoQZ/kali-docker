@@ -26,7 +26,7 @@ services:
   kali:
     hostname: KALI
     container_name: docker_kali
-    image: lastnine/kali-docker_t:v1
+    image: lastnine/kali-docker_t:v1.1
 #    build:
 #      context: ./kali
 #      dockerfile: ./Dockerfile
