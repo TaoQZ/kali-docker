@@ -1,26 +1,21 @@
 FROM kalilinux/kali-rolling
 
-RUN echo 00000000000000000000000000
 WORKDIR /
 COPY ["./kali-archive-keyring_2022.1_all.deb", "/"]
 RUN apt install -y /kali-archive-keyring_2022.1_all.deb
 #RUN apt-get update
 
-RUN echo 11111111111111111
 #RUN apt-get install -y wget
 #RUN wget archive.kali.org/archive-key.asc
 #RUN apt-key add archive-key.asc
 
-RUN echo 22222222222222222222222222222
 
 #RUN wget http://http.kali.org/kali/pool/main/k/kali-archive-keyring/kali-archive-keyring_2022.1_all.deb && sudo dpkg -i ./kali-archive-keyring_2022.1_all.deb
 
-RUN echo 333333333333333333333333333333
 RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get dist-upgrade -y
 
-RUN echo 4444444444444444444444
 
 RUN apt-get install -y gnutls-bin
 RUN apt install -y git-all
