@@ -26,9 +26,10 @@ services:
   kali:
     hostname: KALI
     container_name: docker_kali
-    build: 
-      context: ./kali
-      dockerfile: ./Dockerfile
+    image: lastnine/kali-docker_t:v1
+#    build:
+#      context: ./kali
+#      dockerfile: ./Dockerfile
     stdin_open: true
     tty: true
     privileged: true
